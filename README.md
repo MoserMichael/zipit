@@ -110,8 +110,9 @@ You have the variant for_each_zip_longest_ref_func that again, does the same but
 
 ## Bugs and limitations.
 
-1. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call.
-2. You can't have an iterator for an equivalent of ziplongest - it is impossible to test if the iteration has finished. 
+1. There is no point to have the same zip function as in python - it would create a copy of a list just for the purpose of more convenient iteration. The preferred solution is to have an iterator or algorithm that does the traversal.
+2. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call.
+3. You can't have an iterator for an equivalent of ziplongest - it is impossible to test if the iteration has finished. 
 
 
 
