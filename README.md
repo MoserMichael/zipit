@@ -1,12 +1,12 @@
 
 # The curious case of the zip in the nighttime
 
-python has a (zip function)[https://www.w3schools.com/python/ref_func_zip.asp)  that takes two lists and produces a list of combined tuples. Actually I think this goodie comes from Haskell, originally. The interesting question is: why isn't there an equivalent function in the C++ standard library? To find out I made my own library that does this functionality.
+python has a [zip function](https://www.w3schools.com/python/ref_func_zip.asp)  that takes two lists and produces a list of combined tuples. Actually I think this goodie comes from Haskell, originally. The interesting question is: why isn't there an equivalent function in the C++ standard library? To find out I made my own library that does this functionality.
 
 
 ## The zipit library
 
-The library is a header only library, it lives in header file zipit.h; and in it's own namespace zipit. You can use it with c++17, as it uses std::optional in one case.
+The library is a header only library, it lives in header file [zipit.h](https://github.com/MoserMichael/zipit/blob/master/inc/zipit.h) ; and in it's own namespace zipit. You can use it with c++17, as it uses std::optional in one case.
 
 You can make a forward iterator to walk over a combined pair from two lists; the make function in namespace zipit takes two iterators and produces one for returning pairs whose elements come from both of the iterators.
 
