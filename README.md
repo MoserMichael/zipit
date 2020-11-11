@@ -108,9 +108,9 @@ You can have an algorithm that does the equivalent of python's [ziplongest](http
 You have the variant for_each_zip_longest_ref_func that again, does the same but by passing the function by reference.
 
 
-## bugs and limitations.
+## Bugs and limitations.
 
-1. The iterator has the operator* member - meaning that this operator passes a copy of a std::pair object, it can't pass a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator.
+1. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call.
 2. You can't have an iterator for an equivalent of ziplongest - it is impossible to test if the iteration has finished. 
 
 
