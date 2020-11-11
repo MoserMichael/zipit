@@ -73,7 +73,7 @@ You have the same algorithm - but with the variant to pass the function object b
     zipit::for_each_zip_ref_func( vecA.begin(), vecA.end(), vecB.begin(), vecB.end(), showIt );
 ```
 
-You can have an algorithm that does the equivalent of python's [ziplongest](https://www.geeksforgeeks.org/python-itertools-zip_longest/) 
+You can have an algorithm that does the equivalent of python's [ziplongest](https://www.geeksforgeeks.org/python-itertools-zip_longest/) . Please note that the function object is receiving a pair of optional objects, the optional is empty ifs iterator type has reached the end of iteration.
 
 ```
 
