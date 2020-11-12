@@ -1,8 +1,30 @@
 
 # The curious case of the zip in the night-time
 
-Python has a [zip function](https://www.w3schools.com/python/ref_func_zip.asp)  that takes two lists and produces a list of combined tuples. Actually I think this goodie comes from [Haskell](https://hoogle.haskell.org/?hoogle=zip),  and Haskell was inspired by [Lisp](https://jtra.cz/stuff/lisp/sclr/mapcar.html). The interesting question is: why isn't there an equivalent function in the C++ standard library? To find out I made my own library that does this functionality.
+Python has a [zip function](https://www.w3schools.com/python/ref_func_zip.asp)  that takes two lists and produces an iterator for walking over the list of pairs from both lists.
 
+In the python interpreter that looks as follows:. 
+
+```
+>>> a=[1,2,3]
+>>> b=['a','b','c','d']
+>>> c=zip(a,b)
+>>> print(type(c))
+<class 'zip'>
+>>> for elm in c:
+...   print(elm)
+...
+(1, 'a')
+(2, 'b')
+(3, 'c')
+```
+
+Actually I think this goodie comes from [Haskell](https://hoogle.haskell.org/?hoogle=zip),  and Haskell was inspired by [Lisp](https://jtra.cz/stuff/lisp/sclr/mapcar.html). 
+
+In Haskell the zip function does not produce an iterator, it returns a list. This is not as wasteful as it seems: the resulting list s computed lazily (only when values are read from it). 
+The python solution returns a kind of iterator. 
+
+The interesting question is: why isn't there an equivalent function in the C++ standard library? To find out I made my own library that does this functionality.
 
 ## The zipit library
 
@@ -115,11 +137,10 @@ You have the variant for_each_zip_longest_ref_func that again, does the same but
 
 ## Bugs and limitations.
 
-1. There is no point to have the same zip function as in python - it would create a copy of a list just for the purpose of more convenient iteration. The preferred solution is to have an iterator or algorithm that does the traversal. The zip function in Haskell is efficient, as it is computed lazily (only when values are read from it). The python solution isn't efficient, but nobody cares as the main point there is convenience; the C++ solution can't do that, so the solution is either and iterator or an algorithm.
-2. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call.
-3. You can't have an iterator for an equivalent of ziplongest - it is impossible to test if the iteration has finished; that's because the interface of iterator doesn't know if it has reached the end of it's sequence.. 
-4. It is possible to make a more general iterator for n argument sequences, but that's an exercise for the reader..
-5. Actually all this is old news, c++20 has ranges, so there is a new way of iterating over stuff, a whole new world of mind boggling innovations is coming, and it's just around the corner...
+1. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call.
+2. You can't have an iterator for an equivalent of ziplongest - it is impossible to test if the iteration has finished; that's because the interface of iterator doesn't know if it has reached the end of it's sequence.. 
+3. It is possible to make a more general iterator for n argument sequences, but that's an exercise for the reader..
+4. Actually all this is old news, c++20 has ranges, so there is a new way of iterating over stuff, a whole new world of mind boggling innovations is coming, and it's just around the corner...
 
 
 
