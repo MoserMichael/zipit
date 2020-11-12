@@ -22,7 +22,7 @@ In the python interpreter that looks as follows:.
 Actually I think this goodie comes from [Haskell](https://hoogle.haskell.org/?hoogle=zip),  and Haskell was inspired by [Lisp](https://jtra.cz/stuff/lisp/sclr/mapcar.html). 
 
 In Haskell the zip function does not produce an iterator, it returns a list. This is not as wasteful as it seems: the resulting list s computed lazily (only when values are read from it). 
-The python solution returns a kind of iterator. 
+The python solution returns a kind of iterator. In Lisp they have mapcar, and that is similar to a C++ algorithm: you need to pass it a function that combines a pair taken from both of the list into a value in the result list.
 
 The interesting question is: why isn't there an equivalent function in the C++ standard library? To find out I made my own library that does this functionality.
 
