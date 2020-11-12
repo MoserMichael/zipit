@@ -23,7 +23,12 @@ You can make a forward iterator to walk over a combined pair from two lists; the
     }
 
 ```
-
+The output is:
+```
+iter: first 1 second a
+iter: first 2 second b
+iter: first 3 second c
+```
 
 You have an algorithm similar to std::for_each that does the same as python zip:
 
