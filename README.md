@@ -1,7 +1,7 @@
 
 # The curious case of the zip in the night-time
 
-Python has a [zip function](https://www.w3schools.com/python/ref_func_zip.asp)  that takes two lists and produces a list of combined tuples. Actually I think this goodie comes from [Haskell](https://hoogle.haskell.org/?hoogle=zip),  and Haskell copied it from [Lisp](https://jtra.cz/stuff/lisp/sclr/mapcar.html). The interesting question is: why isn't there an equivalent function in the C++ standard library? To find out I made my own library that does this functionality.
+Python has a [zip function](https://www.w3schools.com/python/ref_func_zip.asp)  that takes two lists and produces a list of combined tuples. Actually I think this goodie comes from [Haskell](https://hoogle.haskell.org/?hoogle=zip),  and Haskell was inspired by [Lisp](https://jtra.cz/stuff/lisp/sclr/mapcar.html). The interesting question is: why isn't there an equivalent function in the C++ standard library? To find out I made my own library that does this functionality.
 
 
 ## The zipit library
