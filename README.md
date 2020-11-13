@@ -51,7 +51,7 @@ iter: first 2 second b
 iter: first 3 second c
 ```
 
-There is a more amazing iterator that accepts an arbitrary number of iterators and returns a tuple of values (it makes use of template meta programming)
+There is a more impressive iterator that accepts an arbitrary number of iterators and returns a tuple of values (it makes use of template meta programming)
 
 ```
     #include <zipit.h>
