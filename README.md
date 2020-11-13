@@ -162,7 +162,9 @@ You can have an algorithm that does the equivalent of python's [ziplongest](http
 You have the variant for_each_zip_longest_ref_func that again, does the same but by passing the function by reference.
 
 
-## limitations.
+## limitations and lessons
+
+Actually boost has a [combine function](https://www.boost.org/doc/libs/1_67_0/libs/range/doc/html/range/reference/utilities/combine.html) for zipping two iterator ranges; however it doesn't combine more than two iterators (ziplib does that).
 
 1. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call. I suspect that this is the reason why they don't have an iterator like this in stl - it is impossible to get the same iterator interface.
 2. It turns out to be possible to have an iterator that is equivalent of ziplongest; it just needs to keep additional boolean per partial iterator to check if it reached the end of it's partial input sequence, this needs to be checked in the increment operator: if a partial operator did reach the end of its sequence then it may not be incremented any further. Now that brings another limitation with it: an iterator has no information on the sequence that it traverses, the end position is a different object. This iterator would assume that it is used in order to traverse just one sequence; in standard c++ you don't have such an assumption. I am not sure if it is proper to add such iterator with so many assumptions on how it is used.
