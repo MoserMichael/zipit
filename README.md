@@ -79,7 +79,7 @@ itern: first 3 second c third 2.200000
 
 
 
-You have an algorithm similar to std::for_each that does the same as python zip:
+You have an algorithm similar to std::for_each - each iteration visits a consecutive pair taken from each of the iterators. 
 
 ```
     #include <zipit.h>
@@ -162,9 +162,9 @@ You can have an algorithm that does the equivalent of python's [ziplongest](http
 You have the variant for_each_zip_longest_ref_func that again, does the same but by passing the function by reference.
 
 
-## Bugs and limitations.
+## limitations.
 
-1. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call.
+1. The iterator has the operator* member - meaning that this operator returns a copy of a std::pair object, it can't return a pointer or a reference. That's because it returns a compound object, it can't return a pointer or a reference to a pair that sits on the stack, as this object is no longer valid once we return from the operator. One could of course keep a member pair and in the iterator and return a pointer/reference to it, now the problem with that is that this object gets overwritten when the iterator advances to a different position; that would be inconvenient if someone still holds the pointer returned by a previous call. I suspect that this is the reason why they don't have an iterator like this in stl - it is impossible to get the same iterator interface.
 2. You can't have an iterator for an equivalent of ziplongest - it is impossible to test if the iteration has finished; that's because the interface of iterator doesn't know if it has reached the end of it's sequence.. 
 3. Actually all this is old news, c++20 has ranges, so there is a new way of iterating over stuff, a whole new world of mind boggling innovations is coming, and it's just around the corner...
 
