@@ -1,5 +1,5 @@
 
-# The curious case of the zip in the night-time
+# The curious incident of the zip in the night-time
 
 Python has a [zip function](https://www.w3schools.com/python/ref_func_zip.asp)  that takes two lists and produces an iterator for walking over the list of pairs from both lists.
 
