@@ -122,7 +122,7 @@ private:
     }
 
     template<size_t FieldIndex>
-    bool cmp_helper(const self_type other) const {
+    bool cmp_helper(const self_type &other) const {
         
         if (std::get<FieldIndex>(iterators_) == std::get<FieldIndex>(other.iterators_)) {
             return true;
