@@ -168,7 +168,6 @@ You have the variant for_each_zip_longest_ref_func that again, does the same but
 2. You can't have an iterator for an equivalent of ziplongest - it is impossible to test if the iteration has finished; that's because the interface of iterator doesn't know if it has reached the end of it's sequence.. 
 3. Actually all this is old news, c++20 has ranges, so there is a new way of iterating over stuff, a whole new world of mind boggling innovations is coming, and it's just around the corner...
 
-
-
+One interesting thing: when one needs to roll his own iterator it has been standard practice to inherit from std::iterator. With c++17 this has been depecated, so here is a link that [explains why](https://www.fluentcpp.com/2018/05/08/std-iterator-deprecated/).
 
 
