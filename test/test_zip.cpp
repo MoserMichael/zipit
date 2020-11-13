@@ -7,6 +7,19 @@ namespace {
 
 using namespace zipit;    
 
+TEST(TestZip,testIteratorMulti) {
+    std::vector<int> vecA = { 1, 2, 3};
+    std::vector<char> vecB = { 'a', 'b', 'c', 'd', 'e', 'f' };
+    std::vector<float> vecC = { 0.57721, 1.1, 2.2, 3.1415 };
+
+    size_t len = 0;
+    for(auto it = maken(vecA.begin(),vecB.begin(),vecC.begin()); it != maken(vecA.end(), vecB.end(), vecC.end()); ++it) {
+        printf("itern: first %d second %c third %f\n", std::get<0>(*it), std::get<1>(*it), std::get<2>(*it) );
+        ++len;
+    }
+	EXPECT_TRUE(len == vecA.size());
+}
+
 TEST(TestZip,testIteratorEqualLength) {
     std::vector<int> vecA = { 1, 2, 3};
     std::vector<char> vecB = { 'a', 'b', 'c' };

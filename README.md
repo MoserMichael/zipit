@@ -51,6 +51,34 @@ iter: first 2 second b
 iter: first 3 second c
 ```
 
+There is a more amazing iterator that accepts an arbitrary number of iterators and returns a tuple of values (it makes use of template meta programming)
+
+```
+    #include <zipit.h>
+
+    ...
+    std::vector<int> vecA = { 1, 2, 3};
+    std::vector<char> vecB = { 'a', 'b', 'c', 'd', 'e', 'f' };
+    std::vector<float> vecC = { 0.57721, 1.1, 2.2, 3.1415 };
+
+    size_t len = 0;
+    for(auto it = zipit::maken(vecA.begin(),vecB.begin(),vecC.begin()); it != zipit::maken(vecA.end(), vecB.end(), vecC.end()); ++it) {
+        printf("itern: first %d second %c third %f\n", std::get<0>(*it), std::get<1>(*it), std::get<2>(*it) );
+        ++len;
+    }
+
+```
+
+The output is:
+
+```
+itern: first 1 second a third 0.577210
+itern: first 2 second b third 1.100000
+itern: first 3 second c third 2.200000
+```
+
+
+
 You have an algorithm similar to std::for_each that does the same as python zip:
 
 ```
