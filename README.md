@@ -155,9 +155,10 @@ You can have an algorithm that does the equivalent of python's [ziplongest](http
 
     func showIt;
 
-    for_each_zip_longest( vecA.begin(), vecA.end(), vecB.begin(), vecB.end(), showIt );
+    zipit::for_each_zip_longest( vecA.begin(), vecA.end(), vecB.begin(), vecB.end(), showIt );
 
 ```
+
 
 You have the variant for_each_zip_longest_ref_func that again, does the same but by passing the function by reference.
 
@@ -172,6 +173,6 @@ Actually boost has a [combine function](https://www.boost.org/doc/libs/1_67_0/li
 
 I think what this all means: c++ iterators are quite good at traversing a single container; they are not quite good at creating compound iteration structures that span several unrelated containers; for this case the iterator has to maintain additional state as part of the iterator, that's when you reach the limits of that abstraction; i think that's what they called an [impedance mismatch](https://www.joelonsoftware.com/2004/03/25/25-2/) 
 
-One interesting thing: when one needs to roll his own iterator it has been standard practice to inherit from std::iterator. With c++17 this has been depecated, so here is a link that [explains why](https://www.fluentcpp.com/2018/05/08/std-iterator-deprecated/).
+One interesting thing: it has been standard practice to inherit from std::iterator in order to implement a custom iterator. Now with c++17 this has been depecated, (doing so will give you ugly warnings) so here is a link that [explains why](https://www.fluentcpp.com/2018/05/08/std-iterator-deprecated/).
 
 
